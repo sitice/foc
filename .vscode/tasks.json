@@ -1,0 +1,52 @@
+{
+	"version": "2.0.0",
+	"options": {
+		"cwd": "${workspaceFolder}/build" //进入build文件夹的绝对路径
+	},
+	//一个tasks中包含着三个小task
+	"tasks": [
+		{
+			"label": "flash", //task名称
+			"command": "openocd", //task命令
+			//调用命令时传递的参数
+			"args": [
+				"-f",
+				"interface/stlink.cfg",
+				"-f",
+				"target/stm32f1x.cfg",
+				"-c",
+				"program build/foc.elf verify reset exit"
+			]
+		},
+		{
+			"type": "shell", //定义任务是被认为是进程还是在shell中运行
+			"label": "cmake", //task名称
+			"command": "cmake", //task命令
+			//调用命令时传递的参数
+			"args": [
+				"..",
+				"-G",
+				"MinGW Makefiles"
+			]
+		},
+		{
+			"label": "make", //task名称
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"command": "mingw32-make", //task命令
+			"args": [] //参数：无
+		},
+		{
+			"label": "Build", //task名称，和launch中preLaunchTask一样
+			"dependsOrder": "sequence", //按列出的顺序执行任务依赖项
+			//依赖项
+			"dependsOn": [
+				"cmake",
+				"make",
+				"flash"
+			]
+		}
+	]
+}

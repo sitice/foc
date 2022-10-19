@@ -1,0 +1,25 @@
+{
+    "cmake.cmakePath": "E:\\CMake\\bin\\cmake.exe",
+    "cmake.mingwSearchDirs": [
+        "E:\\CMake\\bin"
+    ],
+    "cmake.generator": "MinGW Makefiles",
+    "files.associations": {
+        "*.md": "markdown",
+        "freertosconfig.h": "c",
+        "main.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "fileheader.customMade": {
+        "Description": "",
+        "Author": "cy",
+        "Date": "Do not edit",
+        "LastEditors": "cy",
+        "LastEditTime": "Do not edit"
+    },
+    "fileheader.cursorMode": {
+        "description": "",
+        "param": "",
+        "return": ""
+    },
+}
