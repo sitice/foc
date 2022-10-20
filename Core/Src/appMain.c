@@ -13,6 +13,5 @@
 
 void app_main()
 {
-     
     vTaskEndScheduler();
 }
