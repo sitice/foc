@@ -26,6 +26,6 @@ typedef struct{
     _iq min_int;
     _iq max_out;
     _iq min_out;
-} Pid_t;
+}Pid_t;
 
 #endif // __PID_H

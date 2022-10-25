@@ -3,10 +3,11 @@
  * @Author: cy
  * @Date: 2022-10-19 12:50:09
  * @LastEditors: cy
- * @LastEditTime: 2022-10-19 21:56:36
+ * @LastEditTime: 2022-10-20 15:39:56
  */
 
 #include "svpwm.h"
+#include "focMath.h"
 
 Svpwm_t svpwm = {
     _IQ(0),           //阿尔法轴目标电压 	(最大值为母线电压 * sqrt(3) / 3)
@@ -44,8 +45,8 @@ void select_svpwm_sector(Svpwm_t* svpwm) {
 
     //将旋转的坐标系变换到三个轴
     svpwm->u1 = svpwm->uBeta;
-    svpwm->u2 = _IQmpy(svpwm->uAlpha, 1) - _IQdiv2(svpwm->uBeta);
-    svpwm->u3 = -_IQmpy(svpwm->uAlpha, 1) - _IQdiv2(svpwm->uBeta);
+    svpwm->u2 = _IQmpy(svpwm->uAlpha, SQRT_3_2) - _IQdiv2(svpwm->uBeta);
+    svpwm->u3 = -_IQmpy(svpwm->uAlpha, SQRT_3_2) - _IQdiv2(svpwm->uBeta);
 
     if (svpwm->u1 > _IQ(0)) {
         a = 1;
@@ -127,7 +128,7 @@ void calculate_vertor_time(Svpwm_t* svpwm) {
 /**
  * @description: 生成svpwm
  * @param {Svpwm_t*} svpwm
- * @return null
+ * @return none
  */
 void svpwm_generate(Svpwm_t* svpwm) {
     switch (svpwm->sector) {
